@@ -1,0 +1,34 @@
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+}
+
+
+.navbar-custom {
+    color: #FFFFFF;
+    background-color: #CC3333;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+}
+
+.navbar-brand {
+  font-size: 1.50rem;
+}
+
+.dropdown-item {
+  font-size: 1.25rem;
+}
+
+.table-font {
+  font-size: 1.25rem;
+}
+
+.label-info {
+    background-color:#5bc0de;
+}
