@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $races = Race::orderBy('id', 'asc')->get();
+        $races = Race::orderBy('racedate', 'asc')->get();
         $standings = getPlayersStandings();
 
         // return the view and pass it to the view to be looped through

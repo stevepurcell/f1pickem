@@ -22,7 +22,7 @@
         <tbody>
         @foreach ($races as $race)
           <tr>
-            <td class="align-middle">{{ $race->racedate }} {{ daysToRace($race->id) }}</td>
+            <td class="align-middle">{{ $race->racedate }}</td>
             <td class="align-middle"><a href="/admin/races/{{ $race->id }}">{{ $race->name }}</a></td>
             <td class="align-middle">
               @if (raceStarted($race->id) && picksEntered($race->id, Auth::id()))
