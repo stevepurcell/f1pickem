@@ -87,6 +87,7 @@ class PickController extends Controller
         $players = User::whereNull('is_admin')->get();
         $picks = Pick::where('race_id', $id)
                     ->where('user_id', $userid)
+                    ->where('position', '>', 0)
                     ->get();
 
         return view('picks.show', compact('picks', 'players', 'standings'));
