@@ -33,7 +33,7 @@
                 </select>
               </div>
                <div>
-                  <button class="btn btn-primary btn-lg" type="submit" >Save Track</button>
+                  <button class="btn btn-primary btn-lg" type="submit" >Save Race</button>
                </div>
                {{ csrf_field() }}
            </form>

@@ -16,7 +16,7 @@ class RaceController extends Controller
     public function index()
     {
         // Go to the model and get a group of records
-        $races = Race::orderBy('id', 'asc')->paginate(10);
+        $races = Race::orderBy('id', 'asc')->get();
 
         // return the view and pass it to the view to be looped through
         return view('races.index')->with('races', $races);
