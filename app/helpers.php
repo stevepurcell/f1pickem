@@ -5,6 +5,7 @@ use App\Pick;
 use App\Race;
 use App\Driver;
 use App\User;
+use App\Constructor;
 
 if (! function_exists('getDriversAge')) {
     function getDriversAge($driverID) {
@@ -140,6 +141,14 @@ if (! function_exists('daysToRace)')) {
     }
 }
 
+if (! function_exists('getConstructorName')) {
+    function getConstructorName($id) {
+        $constructor = Constructor::where('id', $constructor)->first();
+        return $constructor->name;
+    }
+}
+
+
 if (! function_exists('getDriverName')) {
     function getDriverName($driver_id) {
         $driver = Driver::where('id', $driver_id)->first();
@@ -218,9 +227,7 @@ if (! function_exists('getPlayerPtsByRace')) {
             {
                 $pts = getPlayerPtsByPosition($raceid, $userid, $x);
                 $totalPts += $pts;
-                dump($pts);
             }
-            dd("Total = " . $totalPts);
             return $totalPts;
         } else {
             return 0;
@@ -252,6 +259,39 @@ if (! function_exists('raceComplete')) {
     }
 }
 
+if (! function_exists('getConstructorsDrivers')) {
+    function getConstructorsDrivers($id) {
+        $drivers = DB::table('drivers')
+                ->select('id')
+                ->where('constructor_id', '=', $id)
+                ->get();
+        return $drivers;
+    }
+}
+
+if (! function_exists('getConstructorPointsByRace')) {
+    function getConstructorPointsByRace($constructor_id, $race_id) {
+        $drivers = getConstructorsDrivers($constructor_id);
+        dd($drivers);
+        $results = Result::where('race_id', $race_id)
+                        ->whereIn('driver_id', $drivers['id'])
+                        ->get();
+                        dd($results);
+        return $drivers;
+    }
+}
+
+if (! function_exists('getConstructorPointTotals')) {
+    function getConstructorPointTotal($constructor_id) {
+        $drivers = getConstructorsDrivers($constructor_id);
+        dd($drivers);
+        $results = Result::where('race_id', $race_id)
+                        ->whereIn('driver_id', $drivers['id'])
+                        ->get();
+                        dd($results);
+        return $drivers;
+    }
+}
 
 if (! function_exists('getPlayerPts')) {
     function getPlayerPts($raceid, $userid) {
@@ -324,17 +364,16 @@ if (! function_exists('raceStarted')) {
     }
 }
 
-if (! function_exists('getPlayersStandings')) {
-    function getPlayersStandings()
+if (! function_exists('getPlayersPointsByWeek')) {
+    function getPlayersPointsByWeek($user_id)
     {
-        
-        //$standings = getConstructorStandings();
-        $standings = User::whereNull('is_admin')->get();
-        $standings->transform(function($standings) {
-            return ['name' => $standings->name, 'points' => getPlayerPtsTotal($standings->id)];
+        $races = Race::where('complete', '=', 1)->orderBy('racedate', 'asc')->get();
+        $races->transform(function($races) use($user_id) {
+            return ['name' => $races->name, 
+                    'points' => getPlayerPtsByRace($races->id, $user_id)];
         });
-        $standings = $standings->sortByDesc('points');
-        return $standings;
+        $races = $races->sortByDesc('racedate');
+        return $races;
     }
 }
 
@@ -343,9 +382,61 @@ if (! function_exists('getPlayersWeeklyStandings')) {
     {
         $standings = User::whereNull('is_admin')->get();
         $standings->transform(function($standings) use($race_id) {
-            return ['name' => $standings->name, 'points' => getPlayerPts($race_id, $standings->id)];
+            return ['name' => $standings->name, 
+                    'points' => getPlayerPts($race_id, $standings->id)];
         });
         $standings = $standings->sortByDesc('points');
         return $standings;
+    }
+}
+
+if (! function_exists('getPlayerStandings')) {
+    function getPlayerStandings()
+    {
+        $players = User::whereNull('is_admin')->get();
+        $players->transform(function($players) {
+            return ['id' => $players->id, 
+                    'name' => $players->name, 
+                    'points' => getPlayerPtsTotal($players->id)];
+        });
+        $players = $players->sortByDesc('points');
+        return $players;
+    }
+}
+
+if (! function_exists('getConstructorPointsSeason')) {
+    function getConstructorPointsSeason()
+    {
+        
+    }
+}
+
+
+if (! function_exists('getConstructorStandings')) {
+    function getConstructorStandings()
+    {
+        $constructors = Constructor::all();
+        $constructors->transform(function($constructors) {
+            return ['id' => $constructors->id, 
+                    'name' => $constructors->name, 
+                    'points' => 100];
+        });
+        $constructors = $constructors->sortByDesc('points');
+        return $constructors;
+    }
+}
+
+
+if (! function_exists('getDriverStandings')) {
+    function getDriverStandings()
+    {
+        $drivers = Driver::orderBy('name', 'asc')->get();
+        $drivers->transform(function($drivers) {
+            return ['id' => $drivers->id, 
+                    'name' => $drivers->name, 
+                    'points' => returnPoints($drivers->id)];
+        });
+        $drivers = $drivers->sortByDesc('points');
+        return $drivers;
     }
 }

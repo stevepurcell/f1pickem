@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/admin/home">Home
+          <a class="nav-link" href="/home">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -44,17 +44,15 @@
             </div>
           </li>
         @endif
-        @if (auth()->user() && Auth::user()->is_admin <> 1)
-          <li class="nav-item active">
-            <a class="nav-link" href="/picks">Make Picks
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        @endif
+        <li class="nav-item active">
+          <a class="nav-link" href="/reports">Standings
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          <a class="nav-link active dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}&nbsp;&nbsp;<i class="fas fa-user"></i>
           </a>

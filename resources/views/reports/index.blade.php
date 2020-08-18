@@ -3,42 +3,86 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-12 mt-4">
+    <div class="col-md-4 mt-4">
       <div class="card">
           <div class="card-header text-gray">
             <div class="d-flex align-items-center">
-                <h2><i class="fa fa-flag-checkered" aria-hidden="true"></i> Week #1 Steve's Picks</h2>
+              <h2><i class="fas fa-users" aria-hidden="true"></i> Drivers</h2>
             </div>
         </div>
           <div class="card-body text-secondary">
       <table class="table table-striped table-font">
         <thead>
           <tr>
-            <th scope="col">Position</th>
             <th scope="col">Driver</th>
-            <th scope="col">Finish</th>
             <th scope="col">Points</th>
           </tr>
         </thead>
         <tbody>
-        @foreach ($picks as $pick)
+        @foreach ($drivers as $driver)
           <tr>
-            <td class="align-middle">{{ $pick->position }}</a></td>
-            <td class="align-middle">{{ $pick->driver->name }}</a></td>
-            <td class="align-middle">{{  getActualPosition($pick->race_id, $pick->driver_id) }}</td>
-            <td class="align-middle">{{ calcPlayerPtsByPos($pick->position,
-                                        getActualPosition($pick->race_id, $pick->driver_id)) }}</a></td>
-        </td>
+            <td class="align-middle"><a href="/reports/driver/{{ $driver['id'] }}">{{ $driver['name'] }}</a></td>
+            <td class="align-middle">{{ $driver['points'] }}</a></td>
+          </td>
           </tr>
         @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td class="align-right">Total</td>
-            <td>{{ getPlayerPts($pick->race_id, $pick->user_id) }}</td>
-        </tr>
         </tbody>
       </table>
+      </div>
+  </div>
+</div>
+<div class="col-md-4 mt-4">
+    <div class="card">
+        <div class="card-header text-gray">
+          <div class="d-flex align-items-center">
+            <h2><i class="fa fa-cogs" aria-hidden="true"></i> Constructors</h2>
+          </div>
+      </div>
+        <div class="card-body text-secondary">
+    <table class="table table-striped table-font">
+      <thead>
+        <tr>
+          <th scope="col">Constructor</th>
+          <th scope="col">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach ($constructors as $constructor)
+        <tr>
+          <td class="align-middle">{{ $constructor['name'] }}</td>
+          <td class="align-middle">{{ $constructor['points'] }}</td>
+        </tr>
+      @endforeach
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+<div class="col-md-4 mt-4">
+    <div class="card">
+        <div class="card-header text-gray">
+          <div class="d-flex align-items-center">
+            <h2><i class="fa fa-cogs" aria-hidden="true"></i> Players</h2>
+          </div>
+      </div>
+        <div class="card-body text-secondary">
+    <table class="table table-striped table-font">
+      <thead>
+        <tr>
+          <th scope="col">Player</th>
+          <th scope="col">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach ($players as $player)
+        <tr>
+          <td class="align-middle"><a href="/reports/player/{{ $player['id'] }}">
+              {{ $player['name'] }}</a></td>
+          <td class="align-middle">{{ $player['points'] }}</td>
+        </tr>
+      @endforeach
+      </tbody>
+    </table>
     </div>
   </div>
 </div>

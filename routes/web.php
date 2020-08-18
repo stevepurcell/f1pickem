@@ -90,8 +90,8 @@ Route::get('logActivity', 'HomeController@logActivity')->middleware('is_admin');
 Route::get('logActivity/clearLogs', 'HomeController@clearLogs')->middleware('is_admin');
 
 //Route::get('admin/pickReport', 'ReportController@index')->middleware('is_admin');
-Route::get('admin/pickReport/{userid}/{raceid}', 'ReportController@pickreport')->middleware('is_admin');
-Route::get('admin/standingsReport', 'ReportController@playerStandingsReport')->middleware('is_admin');
+Route::get('admin/pickReport/{userid}/{raceid}', 'ReportController@pickreport');
+Route::get('admin/standingsReport', 'ReportController@playerStandingsReport');
 
 Route::get('/user/{id}', 'UserController@profile')->name('user.profile');
 
@@ -100,5 +100,10 @@ Route::post('/edit/user', 'UserController@update')->name('user.update');
 
 Route::get('/edit/password/user', 'UserController@passwordEdit')->name('password.edit');
 Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
+
+Route::get('/reports', 'ReportController@index')->name('reports');
+Route::get('/reports/driver/{id}', 'ReportController@driver')->name('report.driver');
+Route::get('/reports/constructor/{id}', 'ReportController@constructor')->name('report.constructor');
+Route::get('/reports/player/{id}', 'ReportController@player')->name('report.player');
 
 ?>
