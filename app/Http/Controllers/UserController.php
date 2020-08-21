@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        // Go to the model and get a group of records
+        $users = User::orderBy('id', 'asc')->paginate(10);
+
+        // return the view and pass it to the view to be looped through
+        return view('user.index')->with('users', $users);
+    }
+
     public function edit() {
         if(Auth::user()) {
             $user = User::find(Auth::user()->id);

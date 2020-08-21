@@ -5,47 +5,42 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Update Profile') }}</div>
+                <div class="card-header text-gray">
+            <div class="d-flex align-items-center">
+              <h2><i class="fa fa-users" aria-hidden="true"></i> Players</h2>
+            </div>
+        </div>
 
-                <div class="card-body">
+                <div class="card-body text-secondary">
                     <form method="POST" action="{{ route('user.update') }}">
                         @csrf
+                    <div class="form-group">
+                        <label for="name"><h3>Name:</h3></label>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <input type="text" id="name" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}"    autocomplete="name" autofocus>
 
-                            <div class="col-md-6">
-                                <input id="name" value="{{ $user->name }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><h3>Email:</h3></label>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <input type="text" id="email" value="{{ $user->email }}"  class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" autocomplete="email">
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                        <div>
+                            <button class="btn btn-success btn-lg" type="submit" >Update Profile</button>
+                            <a href="/home" class="btn btn-lg btn-primary">Back</a>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" value="{{ $user->email }}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Update Details') }}
-                                </button>
-                            </div>
-                        </div>
+                        {{ csrf_field() }}
                     </form>
                 </div>
             </div>

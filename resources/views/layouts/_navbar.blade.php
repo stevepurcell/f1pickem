@@ -23,6 +23,7 @@
               <a class="dropdown-item" href="/admin/tracks">Tracks</a>
               <a class="dropdown-item" href="/admin/constructors">Constructors</a>
               <a class="dropdown-item" href="/admin/drivers">Drivers</a>
+              <a class="dropdown-item" href="/users">Users</a>
             </div>
           </li>
           <li class="nav-item dropdown">

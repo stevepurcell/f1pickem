@@ -141,7 +141,12 @@ if (! function_exists('daysToRace)')) {
     }
 }
 
-
+if (! function_exists('getAdminStatus')) {
+    function getAdminStatus($user_id) {
+        $user = User::where('id', $user_id)->first();
+        return $user->is_admin;
+    }
+}
 
 
 if (! function_exists('getDriverName')) {
