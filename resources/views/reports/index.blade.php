@@ -49,8 +49,8 @@
       <tbody>
       @foreach ($constructors as $constructor)
         <tr>
-          <td class="align-middle">{{ $constructor['name'] }}</td>
-          <td class="align-middle">{{ $constructor['points'] }}</td>
+          <td class="align-middle"><a href="/reports/constructor/{{ $constructor['id'] }}">{{ $constructor['name'] }}</a></td>
+            <td class="align-middle">{{ $constructor['points'] }}</a></td>
         </tr>
       @endforeach
       </tbody>

@@ -38,14 +38,10 @@ class ReportController extends Controller
         return view('reports.driver', compact('results', 'driver_id'));
     }
     
-    public function constructor($constructor_id, $race_id)
+    public function constructor($constructor_id)
     {
-        $constructorPoints = getConstructorPointsByRace($constructor_id, $race_id);
-        dd($constructorPoints);
-        // $results = Result::where('driver_id', $constructor_id)
-        //     ->where('position', '>', 0)
-        //     ->orderBy('race_id', 'asc')->get();
-        // return view('reports.driver', compact('results', 'driver_id'));
+        $results = getConstructorPointsByWeek($constructor_id);
+        return view('reports.constructor', compact('results', 'constructor_id'));
     }
     
     public function player($user_id)

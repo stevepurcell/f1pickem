@@ -5,6 +5,14 @@
   <div class="row justify-content-center">
     <div class="col-md-12 mt-4">
       <div class="card">
+        <div class="card-header text-gray">
+                <div class="d-flex align-items-center">
+                    <h2><i class="fa fa-cogs"></i>   Player Results - {{ getUserName($user_id) }}</h2>
+                    <div class="ml-auto">
+                            <a href="/reports" class="btn btn-lg btn-outline-secondary">Back</a>
+                        </div>
+                </div>
+        </div>
           <div class="card-header text-gray">
             <div class="d-flex align-items-center">
                 <h2><i class="fa fa-flag-checkered" aria-hidden="true"></i>
@@ -15,7 +23,7 @@
           <div class="card-body text-secondary">
       <table class="table table-striped table-font">
         <thead>
-          <tr>
+          <tr style="background-color: #A9A9A9;">
             <th scope="col">Race Name</th>
             <th scope="col">Points</th>
           </tr>
@@ -28,7 +36,7 @@
         </td>
           </tr>
         @endforeach
-        <tr>
+        <tr style="background-color: #A9A9A9;">
             <td class="align-right"><strong>Total</strong></td>
             <td>{{ getPlayerPtsTotal($user_id) }}</td>
         </tr>
