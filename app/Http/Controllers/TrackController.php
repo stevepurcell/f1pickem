@@ -16,7 +16,7 @@ class TrackController extends Controller
     public function index()
     {
         // Go to the model and get a group of records
-        $tracks = Track::orderBy('id', 'asc');
+        $tracks = Track::orderBy('id', 'asc')->get();
 
         // return the view and pass it to the view to be looped through
         return view('tracks.index')->with('tracks', $tracks);
