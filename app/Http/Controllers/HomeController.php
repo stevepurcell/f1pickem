@@ -40,9 +40,9 @@ class HomeController extends Controller
     {
         // Go to the model and get a group of records
         $races = Race::orderBy('id', 'asc')->get();
-
+        $standings = getPlayerStandings();
         // return the view and pass it to the view to be looped through
-        return view('adminHome')->with('races', $races);
+        return view('adminHome', compact('races', 'standings'));
     }
 
     public function clearLogs()

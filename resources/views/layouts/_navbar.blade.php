@@ -7,15 +7,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
+        @if (auth()->user() && Auth::user()->is_admin == 1)
         <li class="nav-item active">
-          <a class="nav-link" href="/home">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
+            <a class="nav-link mr-3" href="/admin/home">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          @else
+          <li class="nav-item active">
+            <a class="nav-link mr-3" href="/home">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        @endif
         @if (auth()->user() && Auth::user()->is_admin == 1)
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Tables
+            <a class="nav-link dropdown-toggle active mr-3" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Maintenance
             </a>
             <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
               <a class="dropdown-item" href="/admin/races">Races</a>
@@ -26,30 +34,19 @@
               <a class="dropdown-item" href="/users">Users</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Maintenance
-            </a>
-            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-              <a class="dropdown-item" href="/admin/results">Enter Results</a>
-            </div>
+          <li class="nav-item active mr-3">
+            <a class="nav-link" href="/admin/results">Enter Results</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            <a class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Reports
             </a>
             <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-              <a class="dropdown-item" href="#">Weekly Results</a>
-              <a class="dropdown-item" href="#">Season Standings</a>
+              <a class="dropdown-item" href="/reports">Season Standings</a>
               <a class="dropdown-item" href="/logActivity">Activity Log</a>
             </div>
           </li>
         @endif
-        <li class="nav-item active">
-          <a class="nav-link" href="/reports">Standings
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item dropdown">

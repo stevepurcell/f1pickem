@@ -27,7 +27,7 @@
             <td class="align-middle">
               @if($race->complete == 1)
                 <a href="results/{{ $race->id }}" class="btn btn-lg btn-success">View Results</a>
-              @else 
+              @else
                 <a href="results/{{ $race->id }}/edit" class="btn btn-lg btn-primary">Enter Results</a>
               @endif
             </td>
@@ -54,10 +54,10 @@
         </tr>
       </thead>
       <tbody>
-      @foreach ($races as $race)
+      @foreach ($standings as $standing)
         <tr>
-          <td class="align-middle">Player 1</td>
-          <td class="align-middle">39</td>
+          <td class="align-middle">{{ $standing['name'] }}</td>
+          <td class="align-middle">{{ $standing['points'] }}</td>
         </tr>
       @endforeach
       </tbody>

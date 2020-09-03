@@ -8,13 +8,18 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Russo+One&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                background-image: url('images/background.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: rgb(255, 255, 255);
+                font-family: 'Russo One', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -89,12 +94,12 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="content">
+            <div class="content" >
                 <div class="title m-b-md">
                     F1 Pickem
                 </div>
 
-               
+
                     @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/home') }}" class="myButton">Home</a>
@@ -102,7 +107,7 @@
                         <a href="{{ route('login') }}" class="myButton">Login</a>
                         @endif
                     @endauth
-                
+
                 </div>
             </div>
         </div>

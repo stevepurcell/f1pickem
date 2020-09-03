@@ -16,7 +16,7 @@ class TrackController extends Controller
     public function index()
     {
         // Go to the model and get a group of records
-        $tracks = Track::orderBy('id', 'asc')->paginate(10);
+        $tracks = Track::orderBy('id', 'asc');
 
         // return the view and pass it to the view to be looped through
         return view('tracks.index')->with('tracks', $tracks);
@@ -52,7 +52,7 @@ class TrackController extends Controller
         $track = new Track();
         $track->name = $request->name;
         $track->country_id = $request->country_id;
-        
+
 
         // If successful, redirect to show method
         if($track->save()) {
@@ -127,13 +127,13 @@ class TrackController extends Controller
         $trashedTracks = Track::onlyTrashed()->get();
         return view('tracks.trash', compact('trashedTracks'));
     }
-    
+
     public function restore($id) {
         $restoredTrack = Track::onlyTrashed()->findOrFail($id);
         $restoredTrack->restore($restoredTrack);
         return redirect('/admin/tracks');
     }
-    
+
     public function permanentDelete($id) {
         $permanentDeleteTrack = Track::onlyTrashed()->findOrFail($id);
         $permanentDeleteTrack->forceDelete($permanentDeleteTrack);
