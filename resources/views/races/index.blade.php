@@ -10,7 +10,7 @@
                 <h2><i class="fa fa-flag-checkered" aria-hidden="true"></i> Races</h2>
                   <div class="ml-auto">
                       <a href="/admin/races/create" class="btn btn-lg btn-outline-dark">Add Race</a>
-                      <a href="/admin/races/create" class="btn btn-lg btn-outline-dark">Add Track</a>
+                      <a href="/admin/tracks/create" class="btn btn-lg btn-outline-dark">Add Track</a>
                       <a href="/races/trash" class="btn btn-lg btn-outline-dark">
                         <i class="fa fa-trash-alt"></i>&nbsp;Trash</a>
                   </div>
@@ -40,8 +40,8 @@
             {{ method_field('delete') }}
             <button type="submit" class="btn btn-danger btn-lg pull-left">Delete</button>
             {{ csrf_field() }}
-           </form>      
-        </td>   
+           </form>
+        </td>
           </tr>
         @endforeach
         </tbody>

@@ -89,6 +89,19 @@ if (! function_exists('calcPoints')) {
     }
 }
 
+if (! function_exists('getRole')) {
+    function getRole($id)
+    {
+        $user = User::where('id', $id)->first();
+        $role = $user->is_admin;
+        if($role == 1) {
+            return "administrator";
+        } else {
+            return "user";
+        }
+    }
+}
+
 if (! function_exists('chkPicksEntered')) {
     function chkPicksEntered($userID, $raceID) {
         $pickCount = Pick::where(['user_id', $userID], ['race_id', $raceID])->count();
@@ -193,7 +206,7 @@ if (! function_exists('getActualPosition')) {
 if (! function_exists('getPickAtPosition')) {
     function getPickAtPosition($raceid, $userid, $position) {
         $pickPos = Pick::where('race_id', $raceid)->where('position', $position)->where('user_id', $userid)->first();
-        
+
         $position = $pickPos->position;
         //dd($pickPos->driver_id);
         return $pickPos->driver_id;
@@ -335,7 +348,7 @@ if (! function_exists('getPlayersPointsByWeek')) {
     {
         $races = Race::where('complete', '=', 1)->orderBy('racedate', 'asc')->get();
         $races->transform(function($races) use($user_id) {
-            return ['name' => $races->name, 
+            return ['name' => $races->name,
                     'points' => getPlayerPts($races->id, $user_id)];
         });
         $races = $races->sortByDesc('racedate');
@@ -348,7 +361,7 @@ if (! function_exists('getPlayersWeeklyStandings')) {
     {
         $standings = User::whereNull('is_admin')->get();
         $standings->transform(function($standings) use($race_id) {
-            return ['name' => $standings->name, 
+            return ['name' => $standings->name,
                     'points' => getPlayerPts($race_id, $standings->id)];
         });
         $standings = $standings->sortByDesc('points');
@@ -361,8 +374,8 @@ if (! function_exists('getPlayerStandings')) {
     {
         $players = User::whereNull('is_admin')->get();
         $players->transform(function($players) {
-            return ['id' => $players->id, 
-                    'name' => $players->name, 
+            return ['id' => $players->id,
+                    'name' => $players->name,
                     'points' => getPlayerPtsTotal($players->id)];
         });
         $players = $players->sortByDesc('points');
@@ -375,8 +388,8 @@ if (! function_exists('getDriverStandings')) {
     {
         $drivers = Driver::orderBy('name', 'asc')->get();
         $drivers->transform(function($drivers) {
-            return ['id' => $drivers->id, 
-                    'name' => $drivers->name, 
+            return ['id' => $drivers->id,
+                    'name' => $drivers->name,
                     'points' => returnPoints($drivers->id)];
         });
         $drivers = $drivers->sortByDesc('points');
