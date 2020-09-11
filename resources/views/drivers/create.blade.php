@@ -17,11 +17,17 @@
               <div class="card-body text-secondary">
       <form action="{{ route('drivers.store') }}" method="post">
         <div class="form-group row">
-          <label for="name"class="col-sm-2 col-form-label"><h3>Name:</h3></label>
+          <label for="abbr"class="col-sm-2 col-form-label"><h3>Abbreviation:</h3></label>
           <div class="col-sm-10">
-            <input type="text" class="form-control form-control-lg" name="name">
+            <input type="text" class="form-control form-control-lg" name="abbr">
           </div>
         </div>
+        <div class="form-group row">
+            <label for="name"class="col-sm-2 col-form-label"><h3>Name:</h3></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control form-control-lg" name="name">
+            </div>
+          </div>
         <div class="form-group row">
           <label for="country" class="col-sm-2 col-form-label"><h3>Country</h3></label>
           <div class="col-sm-10">

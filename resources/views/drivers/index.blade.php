@@ -22,6 +22,7 @@
         <thead>
           <tr>
             <th scope="col">Name</th>
+            <th scope="col">Abbr</th>
             <th scope="col">Country</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
@@ -32,6 +33,7 @@
         @foreach ($drivers as $driver)
           <tr>
             <td class="align-middle"><a href="/admin/drivers/{{ $driver->id }}">{{ $driver->name }}</a></td>
+            <td class="align-middle">{{ $driver->abbr }}</a></td>
             <td class="align-middle">{{ $driver->country->name }}</a></td>
             <td class="align-middle">{{ $driver->created_at->diffForHumans()  }}</td>
             <td class="align-middle">{{ $driver->updated_at->diffForHumans()  }}</td>
@@ -43,8 +45,8 @@
             {{ method_field('delete') }}
             <button type="submit" class="btn btn-danger btn-lg pull-left">Delete</button>
             {{ csrf_field() }}
-           </form>      
-        </td>   
+           </form>
+        </td>
           </tr>
         @endforeach
         </tbody>

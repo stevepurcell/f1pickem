@@ -58,6 +58,7 @@ class DriverController extends Controller
         // Process data and submit
         $driver = new Driver();
         $driver->name = $request->name;
+        $driver->abbr = $request->abbr;
         $driver->country_id = $request->country_id;
         $driver->constructor_id = $request->constructor_id;
         $driver->number = $request->number;

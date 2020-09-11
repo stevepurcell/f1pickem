@@ -22,7 +22,7 @@
             <select class="form-control form-control-lg" name="pos0">
                 <option value = "">Choose a Driver</option>
                 @foreach($drivers as $driver)
-                    <option value = "{{ $driver->id }}"> {{$driver->name}}</option>
+                    <option value = "{{ $driver->id }}">{{ $driver->abbr }} - {{ $driver->name }}</option>
                 @endforeach
             </select>
             </div>
@@ -35,13 +35,13 @@
                 <select class="form-control form-control-lg" name="pos{{ $i }}">
                     <option value = "">Choose a Driver</option>
                     @foreach($drivers as $driver)
-                        <option value = "{{ $driver->id }}"> {{$driver->name}}</option>
+                        <option value = "{{ $driver->id }}"> <strong>{{ $driver->abbr }}</strong> - {{ $driver->name }}</option>
                     @endforeach
                 </select>
                 </div>
             </div>
         @endfor
-        
+
                <div>
                   <button class="btn btn-primary btn-lg" type="submit" >Submit Results</button>
                </div>

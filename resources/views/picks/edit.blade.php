@@ -23,7 +23,7 @@
             <select class="form-control form-control-lg" name="pos0">
                 <option value = "">Choose a Driver</option>
                 @foreach($drivers as $driver)
-                    <option value = "{{ $driver->id }}" {{ getPickAtPosition($race->id, Auth::id(), 0)  == $driver->id ? 'selected="selected"' : '' }}> {{$driver->name}}</option>
+                    <option value = "{{ $driver->id }}" {{ getPickAtPosition($race->id, Auth::id(), 0)  == $driver->id ? 'selected="selected"' : '' }}> {{ $driver->abbr }} - {{ $driver->name }}</option>
                 @endforeach
             </select>
             </div>
@@ -36,13 +36,13 @@
                 <select class="form-control form-control-lg" name="pos{{ $i }}">
                     <option value = "">Choose a Driver</option>
                     @foreach($drivers as $driver)
-                        <option value = "{{ $driver->id }}" {{ getPickAtPosition($race->id, Auth::id(), $i)  == $driver->id ? 'selected="selected"' : '' }}> {{$driver->name}}</option>
+                        <option value = "{{ $driver->id }}" {{ getPickAtPosition($race->id, Auth::id(), $i)  == $driver->id ? 'selected="selected"' : '' }}> {{ $driver->abbr }} - {{ $driver->name }}</option>
                     @endforeach
                 </select>
                 </div>
             </div>
         @endfor
-        
+
                <div>
                   <button class="btn btn-primary btn-lg" type="submit" >Update Results</button>
                </div>

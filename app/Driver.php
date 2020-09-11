@@ -9,14 +9,14 @@ class Driver extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name', 'country_id', 'constructor_id', 'number', 'birthyear', 'driver_img'];
-     
+    protected $fillable = ['name', 'abbr', 'country_id', 'constructor_id', 'number', 'birthyear', 'driver_img'];
+
     public function constructor() {
         return $this->belongsTo('App\Constructor');
     }
-    
+
     public function country() {
         return $this->belongsTo('App\Country');
     }
-    
+
 }

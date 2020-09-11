@@ -38,7 +38,7 @@ class PickController extends Controller
     public function pick($id)
     {
         $race = Race::findOrFail($id);
-        $drivers = Driver::orderBy('name', 'asc')->get();
+        $drivers = Driver::orderBy('abbr', 'asc')->get();
         return view('picks.create', compact('race', 'drivers'));
     }
 
@@ -122,7 +122,7 @@ class PickController extends Controller
         $pick = Pick::where('race_id', $id)
                     ->where('user_id', Auth::id())
                     ->get();
-        
+
         return view('picks.edit', compact('pick', 'drivers', 'race'));
     }
 
