@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\LogActivity;
 use App\Race;
 
@@ -63,6 +65,24 @@ class HomeController extends Controller
         //$logs = \LogActivity::logActivityLists();
         $logs = LogActivity::orderBy('id', 'desc')->paginate(25);
         return view('logActivity',compact('logs'));
+    }
+
+    public function compose(View $view)
+    {
+        //$constructors = DB::table('constructors')->count();
+        //Table::select('name','surname')->where('id', 1)->get();
+        $race = Race::where('racedate', '>', now())->first();
+        //dd($race);
+        // $counts = [
+        //     'constructors' => DB::table('constructors')->count(),
+        //     'drivers' => DB::table('drivers')->count(),
+        //     'players' => DB::table('users')->whereNull('is_admin')->count(),
+        //     'races' => DB::table('races')->count(),
+        //     'tracks' => DB::table('tracks')->count(),
+        //     'countries' => DB::table('countries')->count(),
+        // ];
+
+        $view->with('race', $race);
     }
 }
 ?>

@@ -5,7 +5,8 @@
 <body>
     <div id="app">
         @include('layouts._navbar')
-        
+
+        @include('layouts.countdown')
         @include('flash-message')
 
         <main class="py-1">

@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.1",
+        "alpinejs": "^2.7.0",
         "flag-icon-css": "^3.5.0"
     }
 }
