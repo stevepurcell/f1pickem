@@ -7,14 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About F1Pickem
+## F1Pickem
 
 F1Pickem is a web based pickem game.  Players compete with each other by picking the top 10 finishers for a Formula1 race.  
 
 
 ## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- clone repository *git clone 
 - [Powerful dependency injection container](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
