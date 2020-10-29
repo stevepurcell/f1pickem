@@ -57,12 +57,12 @@
         </tr>
       </thead>
       <tbody>
-      {{-- @foreach ($standings as $standing)
+      @foreach ($standings as $standing)
         <tr>
           <td class="align-middle">{{ $standing['name'] }}</td>
           <td class="align-middle">{{ $standing['points'] }}</td>
         </tr>
-      @endforeach --}}
+      @endforeach
       </tbody>
     </table>
   </div>

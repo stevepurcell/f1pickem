@@ -198,7 +198,12 @@ if (! function_exists('getActualPosition')) {
                         ->where('driver_id', $driverid)
                         ->where('position', '>', 0)
                         ->first();
-        return $actual['position'];
+        if($actual) {
+            return $actual['position'];
+        } else {
+            return 99;
+        }
+
     }
 }
 
@@ -206,7 +211,6 @@ if (! function_exists('getActualPosition')) {
 if (! function_exists('getPickAtPosition')) {
     function getPickAtPosition($raceid, $userid, $position) {
         $pickPos = Pick::where('race_id', $raceid)->where('position', $position)->where('user_id', $userid)->first();
-
         $position = $pickPos->position;
         //dd($pickPos->driver_id);
         return $pickPos->driver_id;
