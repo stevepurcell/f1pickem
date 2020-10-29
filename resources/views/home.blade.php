@@ -32,7 +32,7 @@
               @elseif (! raceStarted($race->id) && ! picksEntered($race->id, Auth::id()))
                   <a href="picks/create/{{ $race->id }}" class="btn btn-md btn-block btn-primary">Enter Picks</a>
               @endif
-              
+
             </td>
           </tr>
         @endforeach
@@ -57,12 +57,12 @@
         </tr>
       </thead>
       <tbody>
-      @foreach ($standings as $standing)
+      {{-- @foreach ($standings as $standing)
         <tr>
           <td class="align-middle">{{ $standing['name'] }}</td>
           <td class="align-middle">{{ $standing['points'] }}</td>
         </tr>
-      @endforeach
+      @endforeach --}}
       </tbody>
     </table>
   </div>

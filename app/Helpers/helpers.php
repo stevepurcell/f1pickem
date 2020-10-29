@@ -275,30 +275,28 @@ if (! function_exists('raceComplete')) {
 if (! function_exists('getPlayerPts')) {
     function getPlayerPts($raceid, $userid) {
         $totalPts = 0;
-        for($x = 1; $x <= 10; $x++)
+        if(picksEntered($raceid, $userid))
         {
-            $pickDriver = getPickAtPosition($raceid, $userid, $x);
-            $actualPos = getActualPosition($raceid, $pickDriver);
-            $diff = 0;
-            $points = 0;
-            $driverName = getDriverName($pickDriver);
-
-            if($actualPos > 10)
+            for($x = 1; $x <= 10; $x++)
             {
-                $totalPts = $totalPts + 0;
-                $diff = 99;
-            } else {
-                //$diff = abs($pickDriver - $actualPos);
-                $diff = abs($x - $actualPos);
-                $points = 10 - $diff;
-                $totalPts = $totalPts + $points;
+                $pickDriver = getPickAtPosition($raceid, $userid, $x);
+                $actualPos = getActualPosition($raceid, $pickDriver);
+                $diff = 0;
+                $points = 0;
+                $driverName = getDriverName($pickDriver);
+
+                if($actualPos > 10)
+                {
+                    $totalPts = $totalPts + 0;
+                    $diff = 99;
+                } else {
+                    //$diff = abs($pickDriver - $actualPos);
+                    $diff = abs($x - $actualPos);
+                    $points = 10 - $diff;
+                    $totalPts = $totalPts + $points;
+                }
             }
-
-            //dump("Position: $x Driver: $driverName  ($pickDriver) Actual: $actualPos Diff: $diff Points: $points Total: $totalPts");
-
         }
-
-        //dd("Total Pts = " . $totalPts);
         return $totalPts;
     }
 }
