@@ -25,8 +25,10 @@
             <td class="align-middle">{{ $race->racedate }}</td>
             <td class="align-middle"><a href="/admin/races/{{ $race->id }}">{{ $race->name }}</a></td>
             <td class="align-middle">
-              @if (raceStarted($race->id) && picksEntered($race->id, Auth::id()))
+              @if (raceComplete($race->id) && picksEntered($race->id, Auth::id()))
                 <a href="picks/{{ $race->id }}" class="btn btn-md btn-block btn-success">View Results</a>
+              @elseif (raceComplete($race->id) && ! picksEntered($race->id, Auth::id()))
+                <a href="#" class="btn btn-md btn-block btn-danger">Picks Missing</a>
               @elseif (! raceStarted($race->id) && picksEntered($race->id, Auth::id()))
                   <a href="picks/{{ $race->id }}/edit" class="btn btn-md btn-block btn-info">Edit Picks</a>
               @elseif (! raceStarted($race->id) && ! picksEntered($race->id, Auth::id()))
